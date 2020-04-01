@@ -1,0 +1,16 @@
+.page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+}
+
+.main {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.footer {
+    background-color: #ccc;
+    padding: 1rem;
+    text-align: center;
+}
