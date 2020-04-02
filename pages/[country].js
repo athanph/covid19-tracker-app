@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import Link from 'next/link'
 
 import withLayout from '../components/Layout/Layout'
@@ -22,6 +23,9 @@ const Country = props => {
 
     return (
         <>  
+			<Head>
+				<title>{currentCountryName} COVID-19 Tracker</title>
+			</Head>
             <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                     <Link href="/">
@@ -29,7 +33,7 @@ const Country = props => {
                     </Link>
                 </li>
             </ol>
-			
+
             <Stats countryCode={currentCountry} countryName={currentCountryName} />
 
             <Table country={currentCountry} />

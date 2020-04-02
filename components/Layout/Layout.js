@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch'
 import Head from 'next/head'
 import Router from 'next/router'
 
+import { initGA, logPageView } from '../../utils/analytics'
 import Header from '../Header/Header'
 import Bar from '../Bar/Bar'
 
@@ -53,6 +54,12 @@ const withLayout = Page => {
 		componentDidMount() {
 			const routerQuery = Router.query.country
 			routerQuery && this.handleSetCountry(routerQuery)
+
+			if (!window.GA_INITIALIZED) {
+				initGA()
+				window.GA_INITIALIZED = true
+			}
+			logPageView()
 		}
 
 		render() {
