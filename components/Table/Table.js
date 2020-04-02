@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import useStats from '../../utils/useStats'
 import ratePercent from '../../utils/ratePercent'
@@ -39,14 +40,13 @@ const Table = ({ country }) => {
 	const handleTotalByCountry = () => {
 		let totalsArr = []
 
-		console.log(stats)
-
 		countriesArr.map(country => {
 			let confirmed = 0
 			let recovered = 0
 			let deaths = 0
 			let active = 0
 			let statesArr = []
+			let countryCode = null
 
 			stats.map(s => {
 				if (s.countryRegion === country) {
@@ -55,12 +55,15 @@ const Table = ({ country }) => {
 					recovered += s.recovered
 					deaths += s.deaths
 
+					if (countryCode === null) countryCode = s.iso3 || s.countryRegion
+
 					if (s.provinceState !== null) statesArr.push(s)
 				}
 			})
 
 			totalsArr.push({
 				country: country,
+				countryCode: countryCode,
 				totalConfirmed: confirmed,
 				totalActive: active,
 				totalRecovered: recovered,
@@ -78,8 +81,7 @@ const Table = ({ country }) => {
 
 	const totalByCountry = handleTotalByCountry()
 
-
-    return (	
+	return (
 		<div className="mt-5">
 			<h2>Tally of Cases by {isGlobal ? 'Region' : 'State/Province'}</h2>
 			{/* TODO: 
@@ -102,7 +104,7 @@ const Table = ({ country }) => {
 							return (
 								<tr key={i} className="table-secondary">
 									<th scope="row">
-										{country.country}
+										<Link href={`/c/${country.countryCode}`}><a>{country.country}</a></Link>
 									</th>
 									<td>{ formatNumber(country.totalConfirmed) }</td>
 									<td>{ formatNumber(country.totalActive) }</td>
