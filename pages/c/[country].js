@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import withLayout from '../components/Layout/Layout'
-import Stats from '../components/Stats/Stats'
-import Table from '../components/Table/Table'
+import withLayout from '../../components/Layout/Layout'
+import Stats from '../../components/Stats/Stats'
+import Table from '../../components/Table/Table'
 
 const Country = props => {
     const router = useRouter()

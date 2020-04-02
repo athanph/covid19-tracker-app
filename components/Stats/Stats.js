@@ -6,15 +6,16 @@ import Overview from '../Overview/Overview'
 const Stats = ({ countryCode, countryName }) => {
     const [ apiUrl, setApiUrl ] = useState()
     const { stats, loading, error } = useStats(apiUrl)
-    const baseURL = 'https://covid19.mathdro.id/api'
+	const baseURL = 'https://covid19.mathdro.id/api'
+	const isGlobal = countryCode === 'Global'
 
     useEffect(() => {
         let isMounted = true;
         if (isMounted) {
-            (countryCode !== 'Global')
+            (!isGlobal)
                 ? setApiUrl(`${baseURL}/countries/${countryCode}`)
                 : setApiUrl(baseURL)
-        }
+		}
         return () => { isMounted = false }; 
     }, [countryCode])
 
