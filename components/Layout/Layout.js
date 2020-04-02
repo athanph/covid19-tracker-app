@@ -45,8 +45,8 @@ const withLayout = Page => {
 
 		handleSetUrl = code => {
 			const isGlobal = code === 'Global'
-			const href = isGlobal ? '/' : `/[country]`
-			const as = isGlobal ? '/' : `/${code}`
+			const href = isGlobal ? '/' : `/c/[country]`
+			const as = isGlobal ? '/' : `/c/${code}`
 
 			Router.push(href, as, { shallow: true })
 		}
