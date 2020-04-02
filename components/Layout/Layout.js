@@ -55,11 +55,13 @@ const withLayout = Page => {
 			const routerQuery = Router.query.country
 			routerQuery && this.handleSetCountry(routerQuery)
 
-			if (!window.GA_INITIALIZED) {
-				initGA()
-				window.GA_INITIALIZED = true
+			if (process.env.NODE_ENV === 'production') {
+				if (!window.GA_INITIALIZED) {
+					initGA()
+					window.GA_INITIALIZED = true
+				}
+				logPageView()
 			}
-			logPageView()
 		}
 
 		render() {
@@ -77,7 +79,8 @@ const withLayout = Page => {
 					</main>
 					<footer className={styles.footer}>
 						<div className="container">                
-							COVID-19 Tracker
+							COVID-19 Tracker - <a href="https://github.com/athanph/covid19-tracker-app" target="_blank">Github</a><br/>
+							2020
 						</div>
 					</footer>
 				</div>
@@ -85,6 +88,9 @@ const withLayout = Page => {
 					html, body, #__next {
 						height: 100%;
 						width: 100%;
+					}
+					.recharts-text {
+						font-size: 12px;
 					}
 				`}</style>
 				</>

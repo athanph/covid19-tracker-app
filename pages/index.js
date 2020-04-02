@@ -4,7 +4,6 @@ import Table from '../components/Table/Table'
 import Chart from '../components/Chart/Chart'
 
 const Index = props => {
-	// const { countryTotal }
     const { countryCode, countryName } = props.country
 
     return (

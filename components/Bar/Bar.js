@@ -21,7 +21,7 @@ const Bar = ({country, countries, onChangeCountry }) => {
                     </option>
                     {countries.map(({name, iso3}) => (
                         <option                            
-                            key={iso3}
+                            key={iso3 || name}
                             value={iso3}
                         >
                             {name}
